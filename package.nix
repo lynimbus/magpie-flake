@@ -63,13 +63,13 @@ let
 in
 buildGoModule rec {
   pname = "magpie";
-  version = "0.1.1199";
+  version = "0.1.1200";
 
   src = fetchFromGitHub {
     owner = "yetone";
     repo = "magpie";
-    rev = "f38f65030c557a725e841f196f6f4b56d85db1b0";
-    hash = "sha256-Qwc8fKCMff1KzqZ2wueWMrvJK6g7bjmV6GQT8p7lp5w=";
+    rev = "34ce89945ba864e67d285db8fd7f270a18ddea24";
+    hash = "sha256-Z27o8EYzcoq3K0Zj7s++vVw6lzi4BlKP1F5Tb8hLhcg=";
   };
 
   vendorHash = "sha256-RevP93sHMwgwQxSh4WzKkNIupNQhU/sP3b/g/lpMS+E=";

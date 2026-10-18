@@ -48,6 +48,23 @@ nixpkgs.overlays = [ inputs.magpie-flake.overlays.default ]; # provides pkgs.mag
 Follow your own nixpkgs: without `follows`, gtk4 and webkitgtk come from this
 flake's own nixpkgs pin and you download a second toolchain for no reason.
 
+### Home-manager: the login autostart entry
+
+The package ships `share/applications/magpie.desktop` (`Exec=magpie`), but it
+does not put that into `~/.config/autostart`. A module for that is exported:
+
+```nix
+home-manager.users.<name> = {
+  imports = [ inputs.magpie-flake.homeManagerModules.default ];
+  programs.magpie.enable = true;   # package = pkgs.magpie by default
+};
+```
+
+Do not symlink the entry by hand: a hand-made link usually points at
+`<profile>/share/applications/magpie.desktop`, and once that profile
+generation is replaced (or its store path collected) the link breaks silently —
+magpie just stops starting at login.
+
 Builds are pushed to the `mtul` cachix cache; `flake.nix`'s `nixConfig` already
 advertises it, so `nix build --accept-flake-config` picks it up.
 

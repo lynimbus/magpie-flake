@@ -18,6 +18,8 @@
   [docs/desktop-file.md](docs/desktop-file.md)。
 - `no-double-tray-item-cosmic.patch` — 关掉 COSMIC 上多注册一次托盘条目的行为，见
   [docs/tray-cosmic.md](docs/tray-cosmic.md)。
+- `home-manager.nix` — home-manager 模块，只管登录自启条目（`programs.magpie.enable`）；
+  发布为 `homeManagerModules.default`，用法见 README。
 - `update.py` — 唯一能改版本和 hash 的入口，CLI 契约与不变式写在其 docstring 里。
 - `.github/actions/setup/action.yml` — 装 nix + cachix daemon（复合 action）。
 - `.github/workflows/` — `update-package.yml`（每小时）、`update-flake-lock.yml`

@@ -30,6 +30,8 @@
         magpie = final.callPackage ./package.nix { };
       };
 
+      homeManagerModules.default = ./home-manager.nix;
+
       packages = forAllSystems (
         system:
         let

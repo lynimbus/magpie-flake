@@ -56,7 +56,11 @@ does not put that into `~/.config/autostart`. A module for that is exported:
 ```nix
 home-manager.users.<name> = {
   imports = [ inputs.magpie-flake.homeManagerModules.default ];
-  programs.magpie.enable = true;   # package = pkgs.magpie by default
+  programs.magpie = {
+    enable = true;
+    autostart.enable = true;       # 装登录自启条目
+    # package = pkgs.magpie;       # 默认就是这个
+  };
 };
 ```
 

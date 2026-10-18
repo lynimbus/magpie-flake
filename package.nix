@@ -81,7 +81,12 @@ buildGoModule rec {
   # 关掉 magpie 自己写 ~/.local/share/applications/magpie.desktop 的行为，理由见
   # 文件头；桌面文件和 magpie:// 的注册由下面这份接管。用 patch 文件而不是 sed：
   # 上游一改这段代码，patch 打不上就是构建失败，不会静默退回原行为。
-  patches = [ ./no-self-desktop-file.patch ];
+  patches = [
+    ./no-self-desktop-file.patch
+    # COSMIC 的 watcher 按发送者自己的名字记条目，释放 well-known 名字不会让它
+    # 消失，上游那段"重新注册一次"于是多出一个图标；见 docs/tray-cosmic.md。
+    ./no-double-tray-item-cosmic.patch
+  ];
 
   ldflags = [
     "-s"

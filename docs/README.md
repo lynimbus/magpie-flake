@@ -8,3 +8,4 @@
 | [nix-update.md](nix-update.md) | 为什么不用 nix-update 跟版本（附 1.16.0 源码依据） |
 | [desktop-file.md](desktop-file.md) | desktop 文件这整件事：它写什么、XDG 优先级、我们禁用什么、保留什么 |
 | [patching.md](patching.md) | 为什么补丁用 patch 文件而不是 sed / substituteInPlace |
+| [tray-cosmic.md](tray-cosmic.md) | COSMIC panel 里 magpie 图标重复的来由与补丁 |

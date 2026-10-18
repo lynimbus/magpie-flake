@@ -16,6 +16,8 @@
   `gtk3` tag、为什么不能靠 wrapper 设环境变量），改之前先看。
 - `no-self-desktop-file.patch` — 关掉它自己写 desktop 文件的行为，见
   [docs/desktop-file.md](docs/desktop-file.md)。
+- `no-double-tray-item-cosmic.patch` — 关掉 COSMIC 上多注册一次托盘条目的行为，见
+  [docs/tray-cosmic.md](docs/tray-cosmic.md)。
 - `update.py` — 唯一能改版本和 hash 的入口，CLI 契约与不变式写在其 docstring 里。
 - `.github/actions/setup/action.yml` — 装 nix + cachix daemon（复合 action）。
 - `.github/workflows/` — `update-package.yml`（每小时）、`update-flake-lock.yml`

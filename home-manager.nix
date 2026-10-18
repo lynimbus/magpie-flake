@@ -1,7 +1,8 @@
-# magpie 的 home-manager 集成：登录自启条目。
+# magpie 的 home-manager 集成：装包 + 可选的登录自启条目。
 #
-# 启用后把包里那份 desktop 文件链进 ~/.config/autostart，让 magpie 登录自启。条目
-# 内容仍是包里的 `Exec=magpie %U`（走 PATH），所以升版后永远指向当前版本。
+# enable 把包放进 home.packages；autostart.enable 再把包里那份 desktop 文件链进
+# ~/.config/autostart。条目内容仍是包里的 `Exec=magpie %U`（走 PATH），所以升版后
+# 永远指向当前版本。
 #
 # 不要手工建这个软链：手建的那条通常指向 <profile>/share/applications/magpie.desktop，
 # profile 换代或 GC 掉那一代 store 路径之后链接就断了，而且断得无声无息——下次登录
@@ -18,7 +19,7 @@ let
 in
 {
   options.programs.magpie = {
-    enable = lib.mkEnableOption "magpie 的 home-manager 集成";
+    enable = lib.mkEnableOption "magpie";
 
     autostart.enable = lib.mkEnableOption "登录时自动启动 magpie";
 
@@ -30,8 +31,10 @@ in
     };
   };
 
-  config = lib.mkIf (cfg.enable && cfg.autostart.enable) {
-    xdg.configFile."autostart/magpie.desktop" = {
+  config = lib.mkIf cfg.enable {
+    home.packages = [ cfg.package ];
+
+    xdg.configFile."autostart/magpie.desktop" = lib.mkIf cfg.autostart.enable {
       # 覆盖可能已经存在的条目（例如早期手工建的软链）。
       force = true;
       source = "${cfg.package}/share/applications/magpie.desktop";
